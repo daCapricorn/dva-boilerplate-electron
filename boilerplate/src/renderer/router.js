@@ -1,11 +1,22 @@
 import React from 'react';
-import { Router, Route } from 'dva/router';
-import IndexPage from './routes/IndexPage';
+import { Router, Switch, Route } from 'dva/router';
+import dynamic from 'dva/dynamic';
 
-function RouterConfig({ history }) {
+function RouterConfig({ history, app }) {
+  /* eslint-disable global-require */
+
+  const IndexPage = dynamic({
+    app,
+    component: () => require('./routes/IndexPage'),
+  });
+
+  /* eslint-enable global-require */
+
   return (
     <Router history={history}>
-      <Route path="/" component={IndexPage} />
+      <Switch>
+        <Route exact path="/" component={IndexPage} />
+      </Switch>
     </Router>
   );
 }
