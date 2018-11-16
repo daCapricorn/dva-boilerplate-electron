@@ -11,7 +11,6 @@ log.transports.file.level = 'info';
 
 log.info('(main/index) >>>>>>>>>>>>>>>>>>');
 log.info('(main/index) app start');
-log.info(`(main/index) log file at ${log.findLogPath()}`);
 
 if (is.dev()) {
   require('electron-debug')(); // eslint-disable-line global-require
