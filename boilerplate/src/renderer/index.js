@@ -1,5 +1,6 @@
 import dva from 'dva';
-import './main-dev.html';
+import router from './router';
+// import './template.html';
 
 // 1. Initialize
 const app = dva();
@@ -11,7 +12,9 @@ const app = dva();
 // app.model(require('./models/example'));
 
 // 4. Router
-app.router(require('./router'));
+app.router(router);
 
 // 5. Start
 app.start('#root');
+
+export default app._store; // eslint-disable-line
