@@ -50,6 +50,7 @@
     "electron-builder": "^20.26.1",
     "electron-debug": "^1.1.0",
     "electron-dev": "^1.0.1",
+    "electron-react-devtools": "^0.5.3",
     "electron-rebuild": "^1.4.0",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",

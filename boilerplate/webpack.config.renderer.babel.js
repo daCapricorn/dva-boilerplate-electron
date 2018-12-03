@@ -9,8 +9,13 @@ const serverPort = '8000';
 module.exports = {
   mode: 'development',
   entry: {
-    renderer: [
-      './src/renderer/index.js',
+    loading: [
+      require.resolve('react-dev-utils/webpackHotDevClient'),
+      './src/renderer/loading/index.js',
+    ],
+    test: [
+      require.resolve('react-dev-utils/webpackHotDevClient'),
+      './src/renderer/test/index.js',
     ]
   },
   output: {
@@ -23,7 +28,6 @@ module.exports = {
     host: serverIp,
     port: serverPort,
     hot: true,
-    open: true,
   },
   externals(context, request, callback) {
     let isExternal = false;
@@ -38,16 +42,16 @@ module.exports = {
   module: {
     rules: [
       {
-        "exclude": [
+        exclude: [
             /\.(html|ejs)$/,
             /\.json$/,
             /\.(js|jsx|ts|tsx)$/,
             /\.(css|less|scss|sass)$/,
         ],
-        "loader": "url-loader",
-        "options": {
-            "limit": 10000,
-            "name": "static/[name].[hash:8].[ext]"
+        loader: 'url-loader',
+        options: {
+            limit: 10000,
+            name: 'static/[name].[hash:8].[ext]',
         }
       },
       {
@@ -56,9 +60,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            "loader": "babel-loader",
-            "options": {
-              "cacheDirectory": true,
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
               // "babelrc": false
             }
           },
@@ -69,9 +73,9 @@ module.exports = {
         include: __dirname,
         use: [
           {
-            "loader": "babel-loader",
-            "options": {
-              "cacheDirectory": true,
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
               // "babelrc": false
             }
           },
@@ -86,21 +90,21 @@ module.exports = {
         ]
       },
       {
-        "test": /\.css$/,
-        "use": [
-            "style-loader",
+        test: /\.css$/,
+        use: [
+            'style-loader',
             {
-              "loader": "css-loader",
-              "options": {
-                "importLoaders": 1,
-                "modules": true,
-                "localIdentName": "[name]__[local]___[hash:base64:5]"
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
               }
             },
             {
-              "loader": "postcss-loader",
-              "options": {
-                "ident": "postcss",
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
                 plugins: () => [
                   require('postcss-flexbugs-fixes'),
                   autoprefixer({
@@ -113,20 +117,20 @@ module.exports = {
         ]
       },
       {
-        "test": /\.css$/,
-        "include": /node_modules/,
-        "use": [
-          "style-loader",
+        test: /\.css$/,
+        include: /node_modules/,
+        use: [
+          'style-loader',
           {
-            "loader": "css-loader",
-            "options": {
-              "importLoaders": 1
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
             }
           },
           {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss"
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
             }
           }
         ],
@@ -135,9 +139,17 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      chunks: ['loading'],
       title: 'jdfkjdfjdkf',
       template: './src/renderer/template.ejs',
       filename: 'index.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      chunks: ['test'],
+      title: 'test',
+      template: './src/renderer/template.ejs',
+      filename: 'test.html',
     }),
 
     new webpack.NamedModulesPlugin(),

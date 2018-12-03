@@ -16,7 +16,7 @@ export default {
     callback(null, request.charAt(0) === '.' ? false : `require("${request}")`);
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
