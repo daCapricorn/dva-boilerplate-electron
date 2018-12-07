@@ -7,8 +7,8 @@
   "scripts": {
     "start": "electron app/dist/main",
     "postinstall": "cd app && npm i && cd .. && npm run rebuild",
-    "dev:renderer": "webpack-dev-server --config ./webpack.config.renderer.babel.js",
-    "dev:main": "webpack -w --config ./webpack.config.main.babel.js",
+    "dev:renderer": "webpack-dev-server --mode development --config ./webpack.config.renderer.babel.js",
+    "dev:main": "webpack -w --mode development --config ./webpack.config.main.babel.js",
     "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:main\"",
     "clean": "chmod u+x dist && rm -rf node_modules app/node_modules dist app/dist",
     "build": "roadhog build && webpack --config ./webpack.config.main.babel.js",

@@ -1,13 +1,13 @@
-const autoprefixer = require('autoprefixer')
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import autoprefixer from 'autoprefixer';
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const serverIp = '127.0.0.1';
 const serverPort = '8000';
 
 module.exports = {
-  mode: 'development',
+  target: 'electron-renderer',
   entry: {
     loading: [
       require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -16,7 +16,7 @@ module.exports = {
     test: [
       require.resolve('react-dev-utils/webpackHotDevClient'),
       './src/renderer/test/index.js',
-    ]
+    ],
   },
   output: {
     pathinfo: true,
@@ -43,16 +43,16 @@ module.exports = {
     rules: [
       {
         exclude: [
-            /\.(html|ejs)$/,
-            /\.json$/,
-            /\.(js|jsx|ts|tsx)$/,
-            /\.(css|less|scss|sass)$/,
+          /\.(html|ejs)$/,
+          /\.json$/,
+          /\.(js|jsx|ts|tsx)$/,
+          /\.(css|less|scss|sass)$/,
         ],
         loader: 'url-loader',
         options: {
-            limit: 10000,
-            name: 'static/[name].[hash:8].[ext]',
-        }
+          limit: 10000,
+          name: 'static/[name].[hash:8].[ext]',
+        },
       },
       {
         test: /\.js$/,
@@ -64,7 +64,7 @@ module.exports = {
             options: {
               cacheDirectory: true,
               // "babelrc": false
-            }
+            },
           },
         ],
       },
@@ -77,7 +77,7 @@ module.exports = {
             options: {
               cacheDirectory: true,
               // "babelrc": false
-            }
+            },
           },
         ],
       },
@@ -86,35 +86,35 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]',
-              }
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  autoprefixer({
-                    browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
-                    flexbox: 'no-2009',
-                  }),
-                ],
-              }
-            }
-        ]
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+                  flexbox: 'no-2009',
+                }),
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -125,14 +125,14 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-            }
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-            }
-          }
+            },
+          },
         ],
       },
     ],
@@ -178,13 +178,13 @@ module.exports = {
           name: 'index',
           test: /\.css$/,
           chunks: 'all',
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
 
   performance: {
     hints: false,
   },
-}
+};

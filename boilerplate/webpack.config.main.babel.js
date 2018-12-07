@@ -3,10 +3,11 @@ import path from 'path';
 
 const outputPath = path.join(__dirname, 'app', 'dist');
 export default {
-  mode: 'development',
   target: 'electron-main',
   entry: {
-    main: './src/main/index.js',
+    main: [
+      './src/main/index.js',
+    ],
   },
   output: {
     path: outputPath,
