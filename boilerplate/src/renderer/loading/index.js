@@ -3,7 +3,11 @@ import router from './router';
 // import './template.html';
 
 // 1. Initialize
-const app = dva();
+const app = dva({
+  onError (error) {
+    message.error(error.message);
+  },
+});
 
 // 2. Plugins
 // app.use({});

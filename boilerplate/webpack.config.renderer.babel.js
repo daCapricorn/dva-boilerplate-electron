@@ -51,7 +51,6 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'static/[name].[hash:8].[ext]',
         },
       },
       {
@@ -169,19 +168,6 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
-  },
-
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: 'index',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
   },
 
   performance: {

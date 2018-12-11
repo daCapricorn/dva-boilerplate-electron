@@ -11,7 +11,7 @@
     "dev:main": "webpack -w --mode development --config ./webpack.config.main.babel.js",
     "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:main\"",
     "clean": "chmod u+x dist && rm -rf node_modules app/node_modules dist app/dist",
-    "build": "roadhog build && webpack --config ./webpack.config.main.babel.js",
+    "build": "webpack --mode production --config ./webpack.config.babel.js",
     "lint": "eslint --ext .js src test webpack.config.babel.js",
     "test": "mocha test/**/*-test.js --require babel-register --require ./test/setup --no-timeouts",
     "rebuild": "electron-rebuild -m ./app",
@@ -21,9 +21,22 @@
     "precommit": "npm run lint"
   },
   "build": {
-    "appId": "com.sorrycc.dva-boilerplate",
-    "category": "public.app-category.developer-tools",
-    "asar": false
+    "appId": "com.nbltrust.wookong-solo",
+    "asar": false,
+    "files": [
+      "**/*",
+      "dist/*"
+    ],
+    "mac": {
+      "category": "public.app-category.finance",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "type": "distribution",
+      "artifactName": "${name}_${version}.${ext}",
+      "identity": "Yanfeng Chen (M5LYGNKFLB)"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
