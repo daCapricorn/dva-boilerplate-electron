@@ -1,4 +1,3 @@
-import autoprefixer from 'autoprefixer';
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -6,7 +5,7 @@ import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
 
 const serverIp = '127.0.0.1';
-const serverPort = '8000';
+const serverPort = '4010';
 
 module.exports = {
   target: 'electron-renderer',
