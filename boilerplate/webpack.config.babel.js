@@ -138,19 +138,58 @@ export default [
             },
           ],
         },
-      ],
-    },
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.css$/,
-            chunks: 'all',
-            enforce: true
-          },
+        {
+          test: /\.(sass|scss)$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: false,
+              },
+            },
+          ],
         },
-      },
+        {
+          test: /\.(sass|scss)$/,
+          include: /node_modules/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: false,
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new MiniCssExtractPlugin({

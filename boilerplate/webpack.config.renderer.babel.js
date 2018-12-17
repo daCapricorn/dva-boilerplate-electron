@@ -146,6 +146,12 @@ module.exports = {
               ident: 'postcss',
             },
           },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
         ],
       },
       {
@@ -164,6 +170,12 @@ module.exports = {
             options: {
               ident: 'postcss',
             }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+            },
           },
         ],
       },
